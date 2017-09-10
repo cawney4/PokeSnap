@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class CartScript : MonoBehaviour {
     //Vector3[] path = { new Vector3(1, 0, 0), new Vector3(1, 0, 0), new Vector3(1, 0, 0), new Vector3(1, 0, 0) };
     private Transform[] waypointArray;
-    private int numPoints = 4;
-    float percentsPerSecond = 0.02f; // %2 of the path moved per second
+    private int numPoints = 49;
+    float percentsPerSecond = 0.01f; // %2 of the path moved per second
     float currentPathPercent = 0.0f; //min 0, max 1
 
     
