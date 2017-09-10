@@ -35,11 +35,9 @@ void Start () {
             gameOver = true;
             // Load next scene?
         }
-		Vector3 point2 = iTween.PointOnPath(waypointArray, currentPathPercent + 0.1f);
-
-		Debug.Log (point2.x);
+		Vector3 point2 = iTween.PointOnPath(waypointArray, currentPathPercent + 0.05f);
 		Vector3 direction = new Vector3((int) point2.x, (int) point2.y, (int) point2.z);
-		iTween.RotateTo(gameObject,iTween.Hash("rotation", direction, "easetype", iTween.EaseType.easeInOutSine,"time", 1f));
+		iTween.LookTo(gameObject,iTween.Hash("looktarget", direction, "easetype", iTween.EaseType.easeOutBack,"time", 3f));
 
     }
 
