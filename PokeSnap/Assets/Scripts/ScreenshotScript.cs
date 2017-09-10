@@ -12,7 +12,7 @@ public class ScreenshotScript : MonoBehaviour {
     private int borderWidth = Screen.width / 2;
     private int borderHeight = Screen.height / 2;
     private int borderThickness = 5;
-    List<Texture2D> screenshotList = new List<Texture2D>();
+    
 
     // Display number of pictures
     int maxPics = 100;
@@ -21,6 +21,8 @@ public class ScreenshotScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
+
         screenCap = new Texture2D(borderWidth, borderHeight, TextureFormat.RGB24, false);
         border = new Texture2D(2, 2, TextureFormat.ARGB32, false);
         border.Apply();
@@ -33,7 +35,7 @@ public class ScreenshotScript : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            if (screenshotList.Count < maxPics)
+            if (GameController.screenshotList.Count < maxPics)
             {
                 StartCoroutine("Capture");
             }
@@ -60,12 +62,12 @@ public class ScreenshotScript : MonoBehaviour {
         screenCap.ReadPixels(new Rect((Screen.width / 2) - (borderWidth / 2), (Screen.height / 2) - (borderHeight / 2), borderWidth + 2 * borderThickness, borderHeight + 2 * borderThickness), 0, 0);
         screenCap.Apply();
         shot = true;
-        screenshotList.Add(Instantiate(screenCap));
+        GameController.screenshotList.Add(Instantiate(screenCap));
         updatePicCount();
     }
 
     void updatePicCount()
     {
-        numPicText.text = screenshotList.Count + " / 100";
+        numPicText.text = GameController.screenshotList.Count + " / 100";
     }
 }
