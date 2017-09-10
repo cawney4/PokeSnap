@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CartScript : MonoBehaviour {
     //Vector3[] path = { new Vector3(1, 0, 0), new Vector3(1, 0, 0), new Vector3(1, 0, 0), new Vector3(1, 0, 0) };
@@ -9,15 +10,9 @@ public class CartScript : MonoBehaviour {
     float percentsPerSecond = 0.02f; // %2 of the path moved per second
     float currentPathPercent = 0.0f; //min 0, max 1
 
-    private bool gameOver = false;
-
     
 // Use this for initialization
 void Start () {
-        //iTween.MoveBy(gameObject, iTween.Hash("x", 2, "easeType", "easeInOutExpo", "loopType", "pingPong", "delay", .1));
-        //iTween.PutOnPath(gameObject, path, 100);
-        //GameObject[] list = GameObject.FindGameObjectsWithTag("Path");
-        //list.
         waypointArray = new Transform[numPoints];
         for (int i = 1; i<numPoints + 1; i++)
         {
@@ -30,10 +25,9 @@ void Start () {
 	void Update () {
         currentPathPercent += percentsPerSecond * Time.deltaTime;
         iTween.PutOnPath(gameObject, waypointArray, currentPathPercent);
-        if (currentPathPercent > 100)
+        if (currentPathPercent > 1)
         {
-            gameOver = true;
-            // Load next scene?
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
