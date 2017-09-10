@@ -29,12 +29,18 @@ void Start () {
 	// Update is called once per frame
 	void Update () {
         currentPathPercent += percentsPerSecond * Time.deltaTime;
-        iTween.PutOnPath(gameObject, waypointArray, currentPathPercent);
+		iTween.PutOnPath(gameObject, waypointArray, currentPathPercent);
         if (currentPathPercent > 100)
         {
             gameOver = true;
             // Load next scene?
         }
+		Vector3 point2 = iTween.PointOnPath(waypointArray, currentPathPercent + 0.1f);
+
+		Debug.Log (point2.x);
+		Vector3 direction = new Vector3((int) point2.x, (int) point2.y, (int) point2.z);
+		iTween.RotateTo(gameObject,iTween.Hash("rotation", direction, "easetype", iTween.EaseType.easeInOutSine,"time", 1f));
+
     }
 
     /*
